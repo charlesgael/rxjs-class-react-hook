@@ -29,8 +29,8 @@ class AppStore extends Store<AppState> {
         // Setter that merges the argument given with initialState and stores them in current state
         this.replace({
             online: true,
-            lang: "en"
-            whitelabel
+            lang: "en",
+            theme,
         });
     }
 
