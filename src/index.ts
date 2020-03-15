@@ -30,6 +30,12 @@ export default class Store<State> {
         return storeState;
     }
 
+    /** Synchronous method for accessing the store */
+    getState() {
+        const state = this.subject.getValue();
+        return Object.freeze({ ...state });
+    }
+
     /** Resets the state to its initial value */
     reset() {
         this.replace({});
