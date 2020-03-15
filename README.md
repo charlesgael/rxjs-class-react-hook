@@ -4,8 +4,10 @@ This module is a simple class to extend that will help you create rxjs stores.
 
 ## How to use it
 
+### Store
+
 ```typescript
-import Store from "rxjs-class-react-hook";
+import { Store } from "rxjs-class-react-hook";
 
 export interface AppState {
     online: boolean;
@@ -43,6 +45,30 @@ class AppStore extends Store<AppState> {
 const appStore = new AppStore(initialState);
 
 export default appStore;
+```
+
+### Selector
+
+Selector is a small class helper to keep selectors.
+It is to extend for helping accessing data.
+
+```typescript
+import { Selector } from "rxjs-class-react-hook";
+
+export interface UserState {
+    accessToken?: string;
+    loginFailed: boolean;
+}
+
+export default class UserSelector extends Selector<UserState> {
+    isOnline() {
+        return Boolean(this.state.accessToken);
+    }
+
+    hasLoginError() {
+        return this.state.loginFailed;
+    }
+}
 ```
 
 ## The React hook
