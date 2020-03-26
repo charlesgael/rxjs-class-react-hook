@@ -16,7 +16,7 @@ export default class Store<State> {
 
     /** Hook to use in component that links component refresh to this state changes */
     useState() {
-        const [storeState, setStoreState] = useState(this.initialState);
+        const [storeState, setStoreState] = useState(this.subject.getValue());
 
         useLayoutEffect(() => {
             const subs = this.subscribe(setStoreState);
@@ -28,12 +28,6 @@ export default class Store<State> {
         }, [setStoreState]);
 
         return storeState;
-    }
-
-    /** Synchronous method for accessing the store */
-    getState() {
-        const state = this.subject.getValue();
-        return Object.freeze({ ...state });
     }
 
     /** Resets the state to its initial value */
