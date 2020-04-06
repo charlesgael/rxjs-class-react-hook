@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { BehaviorSubject } from "rxjs";
 
-export default class Store<State> {
+export default abstract class Store<State> {
     private initialState: State;
     private subject: BehaviorSubject<State>;
 
@@ -28,6 +28,11 @@ export default class Store<State> {
         }, [setStoreState]);
 
         return storeState;
+    }
+
+    /** Use to get current state of the store */
+    getState() {
+        return Object.freeze(this.subject.getValue());
     }
 
     /** Resets the state to its initial value */

@@ -1,4 +1,4 @@
-export default class Selector<State> {
+export default abstract class Selector<State> {
     protected state: State;
 
     constructor(state: State) {

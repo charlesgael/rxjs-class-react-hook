@@ -47,6 +47,13 @@ const appStore = new AppStore(initialState);
 export default appStore;
 ```
 
+### PersistStore
+
+Much like `Store`, `PersistStore` is a different implement implementation which enables to persist the data.
+By default it auto loads and auto saves on init/changes and can be disabled.
+
+A `LocalStoragePersistor` is packaged to enable saving to `localStorage`, but you can write your own persistors.
+
 ### Selector
 
 Selector is a small class helper to keep selectors.
