@@ -33,7 +33,8 @@ export default abstract class PersistStore<State> extends Store<State> {
 
     /** Loads the store using the given persistor */
     async load() {
-        await this.persistor.load();
+        const data = await this.persistor.load();
+        this.replace(data);
     }
 
     /** Merges data with current state */

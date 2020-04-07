@@ -1,6 +1,6 @@
 {
     "name": "rxjs-class-react-hook",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "Class to extend to have states that provides hooks for react",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
