@@ -10,18 +10,19 @@ interface PersistStoreOptions {
 
 export default abstract class PersistStore<State> extends Store<State> {
     private persistor: Persistor;
+    private options: PersistStoreOptions;
 
     constructor(initialState: State, persistor: Persistor, options?: Partial<PersistStoreOptions>) {
         super(initialState);
         this.persistor = persistor;
 
-        const safeOptions: PersistStoreOptions = {
+        this.options = {
             autoLoad: true,
             autoSave: true,
             ...options,
         };
 
-        if (safeOptions.autoLoad) {
+        if (this.options.autoLoad) {
             this.load();
         }
     }
@@ -40,12 +41,14 @@ export default abstract class PersistStore<State> extends Store<State> {
     /** Merges data with current state */
     protected merge(data: Partial<State>) {
         super.merge(data);
-        this.save();
+
+        if (this.options.autoSave) this.save();
     }
 
     /** Replaces current state with data */
     protected replace(data: Partial<State>) {
         super.replace(data);
-        this.save();
+
+        if (this.options.autoSave) this.save();
     }
 }
