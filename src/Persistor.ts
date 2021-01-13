@@ -5,7 +5,8 @@ export interface Persistor<T = any> {
 }
 
 export class LocalStoragePersistor<T = any> implements Persistor<T> {
-    key: string;
+    private key: string;
+
     constructor(key: string) {
         this.key = key;
     }
